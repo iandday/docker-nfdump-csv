@@ -3,15 +3,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'dockerImage = docker.build imagename'
+        script {
+          dockerImage = docker.build imagename
+        }
       }
     }
 
-    stage('Deploy') {
-      steps {
-        sh 'sh'
-      }
-    }
+stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+
+                    }
+                }
+            }
+        }
 
     stage('Cleanup') {
       steps {
