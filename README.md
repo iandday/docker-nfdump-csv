@@ -4,7 +4,7 @@ Export nfcapd data to CSV
 
 Inspired by https://github.com/netsage-project/docker-nfdump-collector to allow for the collection and exporting of netflow data for ingestion into Splunk
 
-The container will create CSV output files from netflow capture files, found in the volume mounted at '/data', with the excetpion of the most recent file.  CSV output will be stored in the '/log' directory of the container.  The capture file will be deleted after nfdump completes.
+The container will create CSV output files from netflow capture files, found in the volume mounted at '/data', with the exception of the most recent file.  CSV output will be stored in the '/log' directory of the container.  The capture file will be deleted after nfdump completes.
 
 Example dockercompose
 
