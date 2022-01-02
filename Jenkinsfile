@@ -6,6 +6,7 @@ pipeline {
   }
   agent {
     docker {
+      image 'jenkins/agent'
       args '--network=host'
     }
   }
