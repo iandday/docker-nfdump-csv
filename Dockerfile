@@ -5,6 +5,9 @@ RUN yum install -y python3 crontabs
 # comment out PAM
 RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
 
+VOLUME /data
+VOLUME /log
+
 COPY crontab /etc/cron.d/crontab
 COPY netflow_dump.py /netflow_dump.py
 RUN chmod 0644 /etc/cron.d/crontab
