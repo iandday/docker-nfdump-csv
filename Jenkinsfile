@@ -1,4 +1,9 @@
 pipeline {
+  environment {
+    imagename = 'ianday/nfdump-csv'
+    registryCredential = 'ianday-dockerhub'
+    dockerImage = '\'\''
+  }
   agent any
   stages {
     stage('Build') {
@@ -9,17 +14,17 @@ pipeline {
       }
     }
 
-stage('Deploy Image') {
-            steps{
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
+    stage('Deploy Image') {
+                steps{
+                    script {
+                        docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push("$BUILD_NUMBER")
+                            dockerImage.push('latest')
 
+                        }
                     }
                 }
             }
-        }
 
     stage('Cleanup') {
       steps {
@@ -29,9 +34,5 @@ stage('Deploy Image') {
     }
 
   }
-  environment {
-    imagename = 'ianday/nfdump-csv'
-    registryCredential = 'ianday-dockerhub'
-    dockerImage = '\'\''
-  }
+  
 }
