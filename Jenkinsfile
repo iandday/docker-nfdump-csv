@@ -13,26 +13,21 @@ pipeline {
         }
       }
     }
-
     stage('Deploy Image') {
-                steps{
-                    script {
-                        docker.withRegistry( '', registryCredential ) {
-                            dockerImage.push("$BUILD_NUMBER")
-                            dockerImage.push('latest')
-
-                        }
-                    }
-                }
-            }
-
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+            dockerImage.push('latest')
+          }
+        }
+      }
+    }
     stage('Cleanup') {
       steps {
         sh 'docker rmi $imagename:$BUILD_NUMBER'
         sh 'docker rmi $imagename:latest'
       }
     }
-
   }
-  
 }
