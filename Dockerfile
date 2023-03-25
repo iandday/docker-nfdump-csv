@@ -1,4 +1,4 @@
-FROM netsage/nfdump-collector:1.6.18
+FROM netsage/nfdump-collector:1.6.23
 LABEL org.opencontainers.image.source="https://github.com/netsage-project/docker-nfdump-collector/" 
 USER root
 RUN yum install -y python3 crontabs
