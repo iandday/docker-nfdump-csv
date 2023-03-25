@@ -26,6 +26,8 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
+          format: json
+          failure-threshold: error
 
       - name: 'Build Container'
         run: |
